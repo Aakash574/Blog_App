@@ -1,13 +1,10 @@
 import 'package:blog_app/src/controllers/blog_controller/api_blog_controller.dart';
 import 'package:blog_app/src/controllers/login_controller.dart';
 import 'package:blog_app/src/services/blogs/blog_database.dart';
-import 'package:blog_app/src/utils/constants/colors.dart';
 import 'package:blog_app/src/utils/constants/size.dart';
-import 'package:blog_app/src/views/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 import 'widgets/dashboard_widget.dart';
 
