@@ -1,0 +1,16 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "diffEditor.codeLens": true,
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.find.autoFindInSelection": "multiline",
+    "editor.find.loop": false,
+    "workbench.colorTheme": "Andromeda Bordered",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editor.autoLockGroups": {
+        "default": true
+    },
+    "workbench.settings.openDefaultKeybindings": false
+}

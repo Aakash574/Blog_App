@@ -1,9 +1,11 @@
+import 'package:blog_app/src/controllers/blog_controller/api_blog_controller.dart';
+import 'package:blog_app/src/controllers/login_controller.dart';
 import 'package:blog_app/src/utils/constants/colors.dart';
+import 'package:blog_app/src/views/dashboard/dashboard.dart';
+import 'package:blog_app/src/views/login_signup/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-
-import '../login_signup/login_page.dart';
 
 class GetStarted extends StatefulWidget {
   const GetStarted({super.key});
@@ -15,13 +17,19 @@ class GetStarted extends StatefulWidget {
 class _GetStartedState extends State<GetStarted>
     with SingleTickerProviderStateMixin {
   late AnimationController _lottieController;
+  final UserController userController = Get.put(UserController());
+  final ApiBlogController blogController = Get.put(ApiBlogController());
+
   @override
   void initState() {
     _lottieController = AnimationController(vsync: this);
 
     _lottieController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Get.to(() => const LoginPage(),
+        Get.to(
+            () => userController.isLoggedIn
+                ? const LoginPage()
+                : const Dashboard(),
             duration: const Duration(milliseconds: 500),
             transition: Transition.fadeIn);
         _lottieController.reset();

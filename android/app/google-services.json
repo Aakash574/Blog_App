@@ -1,45 +1,44 @@
 {
   "project_info": {
-    "project_number": "733903450474",
-    "project_id": "blopapp-c97e6",
-    "storage_bucket": "blopapp-c97e6.appspot.com"
+    "project_number": "1048206038429",
+    "project_id": "blogapp-0001",
+    "storage_bucket": "blogapp-0001.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:733903450474:android:90293050cb296033aff513",
+        "mobilesdk_app_id": "1:1048206038429:android:ec245bfe2ab7eef1854b74",
         "android_client_info": {
           "package_name": "com.hackerkernel.blog_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1048206038429-lej9fhdul975dr75mvbh8lb9g7779vp2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hackerkernel.blog_app",
+            "certificate_hash": "82325e2d86f07ea6bdfebbc530b332c1ffefd64a"
+          }
+        },
+        {
+          "client_id": "1048206038429-ic2a1qln22fhb9vftinrl0bstcrj9r9r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBdvcJFuKMT0ehP6gn5L7PbhSfUymRWLno"
+          "current_key": "AIzaSyABnkMOJgQeLXtsFckGiZyTeei4dTAPuYI"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:733903450474:android:ec8950c49df02bcbaff513",
-        "android_client_info": {
-          "package_name": "com.hackerkernel.blog_app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBdvcJFuKMT0ehP6gn5L7PbhSfUymRWLno"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048206038429-ic2a1qln22fhb9vftinrl0bstcrj9r9r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
