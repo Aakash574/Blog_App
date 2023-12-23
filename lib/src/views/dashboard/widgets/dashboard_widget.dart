@@ -52,20 +52,25 @@ class _GenresState extends State<Genres> {
   }
 }
 
-class BlogCard extends StatefulWidget {
+class ApiBlogCard extends StatefulWidget {
   final ApiBlogModel blog;
-  const BlogCard({
+  const ApiBlogCard({
     super.key,
     required this.blog,
   });
 
   @override
-  State<BlogCard> createState() => _BlogCardState(blog);
+  State<ApiBlogCard> createState() => _ApiBlogCardState(blog);
 }
 
-class _BlogCardState extends State<BlogCard> {
+class _ApiBlogCardState extends State<ApiBlogCard> {
   final ApiBlogModel blog;
-  _BlogCardState(this.blog);
+  _ApiBlogCardState(this.blog);
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,11 +94,96 @@ class _BlogCardState extends State<BlogCard> {
                   width: 116,
                   height: 96,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
                       image: NetworkImage(
                         blog.urlToImage ?? "https://c.biztoc.com/265/og.png",
+                      ),
+                      onError: (exception, stackTrace) {
+                        const Text("Image Invalid");
+                      },
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                SIZEWIDTH20,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        blog.title,
+                        maxLines: 2,
+                        style:
+                            Theme.of(context).textTheme.titleLarge!.copyWith(),
+                      ),
+                      SIZEHEIGHT10,
+                      Row(
+                        children: [
+                          Text(
+                            "${publishedTime.toString()} ",
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
+        : Container();
+  }
+}
+
+class FireBaseBlogCard extends StatefulWidget {
+  final BlogModel blog;
+  const FireBaseBlogCard({
+    super.key,
+    required this.blog,
+  });
+
+  @override
+  State<FireBaseBlogCard> createState() => _FireBaseBlogCardState(blog);
+}
+
+class _FireBaseBlogCardState extends State<FireBaseBlogCard> {
+  final BlogModel blog;
+  _FireBaseBlogCardState(this.blog);
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    var difference =
+        DateTime.now().difference(DateTime.parse(blog.publishedAt));
+    var inDays = difference.inDays;
+    var inHours = difference.inHours;
+    var inMinutes = difference.inMinutes;
+    var publishedTime = inMinutes < 60
+        ? "$inMinutes min ago • Today"
+        : inHours < 24
+            ? "$inHours hours ago • Today"
+            : "$inDays days ago • Older";
+    return blog.title != "[Removed]"
+        ? Container(
+            margin: const EdgeInsets.symmetric(vertical: 12),
+            width: size.width,
+            child: Row(
+              children: [
+                Container(
+                  width: 116,
+                  height: 96,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        blog.imageUrl,
                       ),
                       onError: (exception, stackTrace) {
                         const Text("Image Invalid");

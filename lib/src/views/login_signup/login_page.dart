@@ -1,4 +1,3 @@
-
 import 'package:blog_app/src/services/firebase_login/firebase_login.dart';
 import 'package:blog_app/src/utils/constants/size.dart';
 import 'package:blog_app/src/utils/validation/validation.dart';
@@ -66,14 +65,14 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () => _emailController.clear(),
                   ),
                   keyboardType: TextInputType.emailAddress,
-                  prefixIcon: FontAwesomeIcons.at,
+                  prefixIcon: const Icon(FontAwesomeIcons.at),
                   formKey: _emailFormKey,
                 ),
                 LoginSignupWidget(
                   Validation.validatePassword,
                   isVisible,
                   controller: _passwordController,
-                  prefixIcon: FontAwesomeIcons.lock,
+                  prefixIcon: const Icon(FontAwesomeIcons.lock),
                   hintText: 'Password',
                   keyboardType: TextInputType.visiblePassword,
                   suffixIcon: IconButton(
@@ -115,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                 Text("Or", style: textTheme.titleLarge),
                 SIZEHEIGHT10,
                 GestureDetector(
-                  // onTap: login,
+                  onTap: () => FirebaseLogin().signInWithGoogle(),
                   child: Container(
                     height: 64,
                     width: 230,

@@ -8,9 +8,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
+enum Pages { dashboard, profilePage }
 
-class BlogApp extends StatelessWidget {
-  BlogApp({super.key});
+class BlogApp extends StatefulWidget {
+  const BlogApp({super.key});
+
+  @override
+  State<BlogApp> createState() => _BlogAppState();
+}
+
+class _BlogAppState extends State<BlogApp> {
   final UserController userController = Get.find();
 
   @override
@@ -20,10 +27,17 @@ class BlogApp extends StatelessWidget {
         toolbarHeight: 96,
         leadingWidth: 0,
         backgroundColor: ConstColors.primaryColor,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(20),
+          ),
+        ),
         leading: Container(
           padding: PADDING32,
           alignment: Alignment.center,
-          child: const FaIcon(FontAwesomeIcons.bars),
+          child: const FaIcon(
+            FontAwesomeIcons.bars,
+          ),
         ),
         title: Row(
           children: [
@@ -36,17 +50,18 @@ class BlogApp extends StatelessWidget {
               radius: 24,
               child: GestureDetector(
                 onTap: () => Get.to(() => const ProfilePage()),
-                child: Image.network(
-                  userController.user.photoURL.toString(),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.network(
+                    userController.user.photoURL.toString(),
+                  ),
                 ),
               ),
             ),
           ],
         ),
       ),
-      body: const SafeArea(
-        child: Dashboard(),
-      ),
+      body: const Dashboard(),
     );
   }
 }

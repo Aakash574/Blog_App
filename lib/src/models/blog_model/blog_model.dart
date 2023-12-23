@@ -1,26 +1,63 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+List<BlogModel> convertQuerySnapshotToBlogModels<T>(
+    List<QueryDocumentSnapshot<T>> querySnapshotList) {
+  return querySnapshotList.map((QueryDocumentSnapshot<T> snapshot) {
+    Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+    return BlogModel(
+      id: snapshot.id,
+      author: data['author'] ?? '',
+      email: data['email'] ?? '',
+      title: data['title'] ?? '',
+      description: data['description'] ?? '',
+      imageUrl: data['image_url'] ?? '',
+      profileUrl: data['profile_url'] ?? '',
+      content: data['content'] ?? '',
+      publishedAt: data['publishedAt'] ?? DateTime.now().toString(),
+    );
+  }).toList();
+}
+
 class BlogModel {
   final String id;
+  final String author;
+  final String email;
   final String title;
   final String description;
-  final String urlToImage;
+  final String imageUrl;
+  final String profileUrl;
   final String content;
   final String publishedAt;
 
-  BlogModel(
-    this.urlToImage, {
+  BlogModel({
     required this.id,
+    required this.author,
+    required this.email,
     required this.title,
     required this.description,
+    required this.imageUrl,
+    required this.profileUrl,
     required this.content,
     required this.publishedAt,
   });
+
+  // factory BlogModel.fromJson(Map<String, dynamic> json) {
+  //   return BlogModel(
+  //     id: json['id'] ?? '',
+  //     author: json['author'] ?? '',
+  //     email: json['email'] ?? '',
+  //     title: json['title'] ?? '',
+  //     description: json['description'] ?? '',
+  //     imageUrl: json['image_url'] ?? '',
+  //     profileUrl: json['profile_url'] ?? '',
+  //     content: json['content'] ?? '',
+  //     publishedAt: json['publishedAt'] ?? DateTime.now().toString(),
+  //   );
+  // }
 }
 
-// To parse this JSON data, do
-//
-//     final apiBlogModel = apiBlogModelFromJson(jsonString);
 List<ApiBlogModel> apiBlogModelFromJson(String str) => List<ApiBlogModel>.from(
     json.decode(str).map((x) => ApiBlogModel.fromJson(x)));
 

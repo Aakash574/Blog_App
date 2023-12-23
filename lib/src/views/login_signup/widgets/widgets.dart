@@ -1,13 +1,12 @@
 import 'package:blog_app/src/utils/constants/size.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginSignupWidget extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?) validator;
   final TextInputType keyboardType;
   final IconButton suffixIcon;
-  final IconData prefixIcon;
+  final Icon prefixIcon;
   final String hintText;
   final bool obscureText;
   final GlobalKey<FormState> formKey;
@@ -41,10 +40,7 @@ class LoginSignupWidget extends StatelessWidget {
           decoration: InputDecoration(
             prefixIcon: Container(
               padding: PADDING16,
-              child: FaIcon(
-                prefixIcon,
-                size: Size16,
-              ),
+              child: prefixIcon,
             ),
             suffixIcon: suffixIcon,
             enabledBorder: OutlineInputBorder(

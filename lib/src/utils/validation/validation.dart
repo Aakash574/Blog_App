@@ -1,4 +1,3 @@
-
 class Validation {
   static String? validatePassword(String? password) {
     List<String> symbols = ["@", "#", "\$", "!", "*", "&", "^"];
@@ -36,5 +35,15 @@ class Validation {
     } else {
       return null;
     }
+  }
+
+  static String? validateUrl(String? value) {
+    const pattern =
+        r'^(?:http|https):\/\/(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/[^\s]*)?$';
+    final regex = RegExp(pattern);
+
+    return value!.isNotEmpty && !regex.hasMatch(value)
+        ? "Enter a valid url"
+        : null;
   }
 }

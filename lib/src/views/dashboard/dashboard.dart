@@ -1,14 +1,11 @@
 import 'package:blog_app/src/controllers/blog_controller/api_blog_controller.dart';
 import 'package:blog_app/src/controllers/login_controller.dart';
-import 'package:blog_app/src/services/blogs/blog_database.dart';
 import 'package:blog_app/src/utils/constants/size.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import 'widgets/dashboard_widget.dart';
-
-enum Pages { dashboard, profilePage }
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -22,11 +19,11 @@ class _DashboardState extends State<Dashboard> {
   int selectedIndex = 0;
   final UserController userController = Get.find();
   final ApiBlogController apiBlogController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-     
       body: SafeArea(
         child: SingleChildScrollView(
           padding: PADDING24,
@@ -113,16 +110,13 @@ class _DashboardState extends State<Dashboard> {
                 itemCount: 5,
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemBuilder: (context, index) => BlogCard(
+                itemBuilder: (context, index) => ApiBlogCard(
                   blog: apiBlogController.blog[index],
                 ),
               )
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async => await BlogDatabase().fatchBlog(),
       ),
     );
   }

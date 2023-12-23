@@ -1,10 +1,13 @@
 import 'dart:developer';
+import 'dart:convert';
 
+import 'package:blog_app/src/blog_app.dart';
 import 'package:blog_app/src/models/user_model.dart';
 import 'package:blog_app/src/views/dashboard/dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../controllers/login_controller.dart';
 
@@ -12,6 +15,23 @@ class FirebaseLogin {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final db = FirebaseFirestore.instance;
   final UserController userController = Get.find<UserController>();
+
+  var googleSignIn = GoogleSignIn();
+
+  Future<void> signInWithGoogle() async {
+    var user = await googleSignIn.signIn();
+
+    final userModel = UserModel(
+      displayName: user!.displayName,
+      email: user.email,
+      phoneNumber: "",
+      photoURL: user.photoUrl,
+      providerId: "",
+      uid: user.id,
+    );
+    userController.setUser(userModel);
+    Get.offAll(() => const BlogApp());
+  }
 
   Future<void> storeInFirestore(UserModel userModel) async {
     try {
@@ -56,7 +76,7 @@ class FirebaseLogin {
 
       storeInFirestore(userModel);
       userController.setUser(userModel);
-      Get.offAll(() => const Dashboard());
+      Get.offAll(() => const BlogApp());
     } catch (e) {
       print('Error during signup: $e');
     }

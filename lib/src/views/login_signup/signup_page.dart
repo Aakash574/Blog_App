@@ -64,7 +64,7 @@ class _SignupPageState extends State<SignupPage> {
                   onPressed: () => _nameController.clear(),
                 ),
                 keyboardType: TextInputType.text,
-                prefixIcon: FontAwesomeIcons.textWidth,
+                prefixIcon: const Icon(FontAwesomeIcons.textWidth),
                 formKey: _nameFormKey,
               ),
               LoginSignupWidget(
@@ -78,7 +78,7 @@ class _SignupPageState extends State<SignupPage> {
                   onPressed: () => _emailController.clear(),
                 ),
                 keyboardType: TextInputType.emailAddress,
-                prefixIcon: FontAwesomeIcons.at,
+                prefixIcon: const Icon(FontAwesomeIcons.at),
                 formKey: _emailFormKey,
               ),
               LoginSignupWidget(
@@ -92,14 +92,14 @@ class _SignupPageState extends State<SignupPage> {
                   onPressed: () => _phoneNoController.clear(),
                 ),
                 keyboardType: TextInputType.phone,
-                prefixIcon: FontAwesomeIcons.at,
+                prefixIcon: const Icon(FontAwesomeIcons.at),
                 formKey: _phoneNoFormKey,
               ),
               LoginSignupWidget(
                 Validation.validatePassword,
                 isVisible,
                 controller: _passwordController,
-                prefixIcon: FontAwesomeIcons.lock,
+                prefixIcon: const Icon(FontAwesomeIcons.lock),
                 hintText: 'Password',
                 keyboardType: TextInputType.visiblePassword,
                 suffixIcon: IconButton(
@@ -137,36 +137,6 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               SIZEHEIGHT10,
-              Text("Or", style: textTheme.titleLarge),
-              SIZEHEIGHT10,
-              GestureDetector(
-                child: Container(
-                  height: 64,
-                  width: 230,
-                  margin: MARIGN12,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                  ),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const FaIcon(
-                          FontAwesomeIcons.google,
-                          color: Colors.black,
-                        ),
-                        Text(
-                          "Sign Up with Google",
-                          style: textTheme.titleMedium!
-                              .copyWith(color: ConstColors.primaryColor),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SIZEHEIGHT20,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
